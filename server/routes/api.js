@@ -175,4 +175,29 @@ router.get('/special-app', verifyToken, (req, res) => {
   res.json(events);
 });
 
+router.get('/stock', (req, res) => {
+  let stock = {
+    _id: '1',
+    name: 'Pinterest',
+    logo: 'link',
+    ticker: 'PING',
+    product: 'advertisement',
+    advantage: 'NA',
+    risk: 'NA',
+    market: 'NA',
+    strategy: 'NA',
+    marketCap: 5,
+    revenue: 5,
+    guidance: 'good',
+    pe: 5,
+    competitors: 'facebook',
+    lastUpdated: '2019-7-24',
+    summary: 'test',
+    bull: true,
+    term: 1,
+    perspective: 1
+  };
+  res.json(stock);
+});
+
 module.exports = router;

@@ -10,9 +10,10 @@ import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthService } from './auth.service';
-import { EventService } from './event.service';
+import { HttpRequestService } from './http-request.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { StockPropertiesComponent } from './stock-properties/stock-properties.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,14 @@ import { TokenInterceptorService } from './token-interceptor.service';
     RegisterComponent,
     LoginComponent,
     EventsComponent,
-    SpecialEventsComponent
+    SpecialEventsComponent,
+    StockPropertiesComponent
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [
     AuthService,
     AuthGuard,
-    EventService,
+    HttpRequestService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

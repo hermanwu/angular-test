@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../event.service';
+import { HttpRequestService } from '../http-request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -13,7 +13,7 @@ export class SpecialEventsComponent implements OnInit {
   specialEvents = [];
 
   constructor(
-    private _eventService: EventService,
+    private httpRequestService: HttpRequestService,
     private _router: Router,
     private _authService: AuthService
   ) {}
@@ -23,7 +23,7 @@ export class SpecialEventsComponent implements OnInit {
   }
 
   getSpecialEvents() {
-    this._eventService.getSpecialEvents().subscribe(
+    this.httpRequestService.getSpecialEvents().subscribe(
       res => {
         if (res.message === 'expired access token') {
           console.log('our token is expired');
