@@ -26,4 +26,10 @@ describe('ApplicationsPageComponent', () => {
     const applicationList = fixture.nativeElement.querySelectorAll('.item');
     expect(applicationList.length).toEqual(2);
   });
+
+  it('should have access button for each list item', () => {
+    const buttonElement = fixture.nativeElement.querySelector('button');
+    console.log(buttonElement);
+    expect(buttonElement.innerHTML).toEqual('Access');
+  });
 });
