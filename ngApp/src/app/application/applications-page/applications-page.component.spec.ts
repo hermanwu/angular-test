@@ -24,6 +24,6 @@ describe('ApplicationsPageComponent', () => {
 
   it('should show multiple application items', () => {
     const len = fixture.nativeElement.querySelectorAll('.item').length;
-    expect(len).toEqual(3);
+    expect(len).toEqual(2);
   });
 });
