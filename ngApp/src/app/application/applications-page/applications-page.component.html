@@ -1,1 +1,5 @@
-<p>applications-page works!</p>
+<ul>
+  <li *ngFor="let app of applicationInstances" class="item">
+    {{ app.id }}
+  </li>
+</ul>
