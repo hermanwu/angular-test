@@ -14,6 +14,7 @@ import { HttpRequestService } from './http-request.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { StockPropertiesComponent } from './stock-properties/stock-properties.component';
+import { StockPropertiesResolverService } from './stock-properties/stock-properties-resolver.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { StockPropertiesComponent } from './stock-properties/stock-properties.co
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    StockPropertiesResolverService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stock-properties',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock-properties.component.scss']
 })
 export class StockPropertiesComponent implements OnInit {
+  stock: any;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private _route: ActivatedRoute) {
+    this.stock = this._route.snapshot.data['stock'];
   }
 
+  ngOnInit() {}
 }

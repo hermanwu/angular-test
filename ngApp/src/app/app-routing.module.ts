@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthGuard } from './auth.guard';
 import { StockPropertiesComponent } from './stock-properties/stock-properties.component';
+import { StockPropertiesResolverService } from './stock-properties/stock-properties-resolver.service';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'stock',
-    component: StockPropertiesComponent
+    component: StockPropertiesComponent,
+    resolve: { stock: StockPropertiesResolverService }
   }
 ];
 
