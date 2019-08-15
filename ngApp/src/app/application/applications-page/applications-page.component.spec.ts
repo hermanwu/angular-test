@@ -23,7 +23,7 @@ describe('ApplicationsPageComponent', () => {
   });
 
   it('should show multiple application items', () => {
-    const len = fixture.nativeElement.querySelectorAll('.item').length;
-    expect(len).toEqual(2);
+    const applicationList = fixture.nativeElement.querySelectorAll('.item');
+    expect(applicationList.length).toEqual(2);
   });
 });
