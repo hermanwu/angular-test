@@ -15,6 +15,8 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { StockPropertiesComponent } from './stock-properties/stock-properties.component';
 import { StockPropertiesResolverService } from './stock-properties/stock-properties-resolver.service';
+import { ApplicationRoutingModule } from './application/application-routing.module';
+import { ApplicationsPageComponent } from './application/applications-page/applications-page.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,16 @@ import { StockPropertiesResolverService } from './stock-properties/stock-propert
     LoginComponent,
     EventsComponent,
     SpecialEventsComponent,
-    StockPropertiesComponent
+    StockPropertiesComponent,
+    ApplicationsPageComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ApplicationRoutingModule,
+  ],
   providers: [
     AuthService,
     AuthGuard,
@@ -33,10 +42,10 @@ import { StockPropertiesResolverService } from './stock-properties/stock-propert
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
-      multi: true
+      multi: true,
     },
-    StockPropertiesResolverService
+    StockPropertiesResolverService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

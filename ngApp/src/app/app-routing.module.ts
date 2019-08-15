@@ -12,34 +12,30 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/applications',
-    pathMatch: 'full'
-  },
-  {
-    path: 'applications',
-    component: EventsComponent
+    pathMatch: 'full',
   },
   {
     path: 'special-app',
     component: SpecialEventsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
   },
   {
     path: 'stock',
     component: StockPropertiesComponent,
-    resolve: { stock: StockPropertiesResolverService }
-  }
+    resolve: { stock: StockPropertiesResolverService },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
