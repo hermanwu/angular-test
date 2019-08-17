@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +19,7 @@ import { StockPropertiesComponent } from './stock-properties/stock-properties.co
 import { StockPropertiesResolverService } from './stock-properties/stock-properties-resolver.service';
 import { ApplicationRoutingModule } from './application/application-routing.module';
 import { ApplicationsPageComponent } from './application/applications-page/applications-page.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -30,10 +33,12 @@ import { ApplicationsPageComponent } from './application/applications-page/appli
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     ApplicationRoutingModule,
+    MaterialModule,
   ],
   providers: [
     AuthService,
