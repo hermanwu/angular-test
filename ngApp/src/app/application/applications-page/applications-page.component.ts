@@ -13,8 +13,9 @@ export class ApplicationsPageComponent implements OnInit {
   constructor(private applicationHttpService: ApplicationHttpService) {}
 
   ngOnInit() {
-    this.applicationHttpService.getApplications().subscribe(applications => {
-      this.applicationInstances = applications;
-    });
+    // this.applicationHttpService.getApplications().subscribe(applications => {
+    //   this.applicationInstances = applications;
+    // });
+    this.applicationInstances = [{ id: 1 }, { id: 2 }];
   }
 }
