@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpRequestService } from '../http-request.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../authentication/services/auth.service';
 
 @Component({
   selector: 'app-special-events',
   templateUrl: './special-events.component.html',
-  styleUrls: ['./special-events.component.scss']
+  styleUrls: ['./special-events.component.scss'],
 })
 export class SpecialEventsComponent implements OnInit {
   specialEvents = [];

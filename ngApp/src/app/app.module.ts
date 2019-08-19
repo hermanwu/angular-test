@@ -7,11 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './authentication/services/auth.service';
 import { HttpRequestService } from './http-request.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
@@ -20,18 +18,22 @@ import { StockPropertiesResolverService } from './stock-properties/stock-propert
 import { ApplicationRoutingModule } from './application/application-routing.module';
 import { ApplicationsPageComponent } from './application/applications-page/applications-page.component';
 import { MaterialModule } from './material/material.module';
+import { LoginComponent } from './authentication/login/login.component';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { SignupComponent } from './authentication/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
     EventsComponent,
+    LoginComponent,
+    SignupComponent,
     SpecialEventsComponent,
     StockPropertiesComponent,
     ApplicationsPageComponent,
   ],
   imports: [
+    AuthenticationModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
