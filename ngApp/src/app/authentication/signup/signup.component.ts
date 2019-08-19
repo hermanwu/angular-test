@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../authentication/services/auth.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -22,5 +23,9 @@ export class SignupComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form);
   }
 }

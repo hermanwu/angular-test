@@ -21,6 +21,7 @@ import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SignupComponent } from './authentication/signup/signup.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    FlexLayoutModule,
     HttpClientModule,
     AppRoutingModule,
     ApplicationRoutingModule,
