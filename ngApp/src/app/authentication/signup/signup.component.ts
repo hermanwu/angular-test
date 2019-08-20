@@ -9,10 +9,15 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  maxDate;
+
   registerUserData = {};
   constructor(private _auth: AuthService, private _router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  }
 
   registerUser() {
     this._auth.registerUser(this.registerUserData).subscribe(
