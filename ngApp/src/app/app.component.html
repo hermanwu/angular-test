@@ -1,55 +1,72 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Cloudistics</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/applications" routerLinkActive="active"
-          >MarketPlace</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/special-app" routerLinkActive="active"
-          >Downloaded</a
-        >
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <a
-        class="nav-link"
-        *ngIf="!_authService.loggedIn()"
-        routerLink="/login"
-        routerLinkActive="active"
-        >Login</a
-      >
-      <a
-        class="nav-link"
-        *ngIf="!_authService.loggedIn()"
-        routerLink="/register"
-        routerLinkActive="active"
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/login">
+        <mat-icon></mat-icon>
+      </a>
+      <a mat-list-item routerLink="/register" (click)="sidenav.close()"
         >Register</a
       >
-      <a
-        class="nav-link"
-        style="cursor:pointer"
-        *ngIf="_authService.loggedIn()"
-        (click)="_authService.logoutUser()"
-        >Logout</a
-      >
-    </ul>
-  </div>
-</nav>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+      <a mat-list-item routerLink="/login" (click)="sidenav.close()">Login</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div fxFlex fxLayout fxHide.xs>
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+          <li>
+            <a routerLink="/">DC</a>
+          </li>
+          <li>
+            <a routerLink="/applications" routerLinkActive="active"
+              >MarketPlace</a
+            >
+          </li>
+          <li>
+            <a routerLink="/special-app" routerLinkActive="active"
+              >Downloaded</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+          <li>
+            <a
+              *ngIf="!_authService.loggedIn()"
+              routerLink="/login"
+              routerLinkActive="active"
+              >Login
+            </a>
+          </li>
+          <li>
+            <a
+              *ngIf="!_authService.loggedIn()"
+              routerLink="/register"
+              routerLinkActive="active"
+              >Register
+            </a>
+          </li>
+          <li>
+            <a
+              style="cursor:pointer"
+              *ngIf="_authService.loggedIn()"
+              (click)="_authService.logoutUser()"
+              >Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,8 @@ import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SpecialEventsComponent,
     StockPropertiesComponent,
     ApplicationsPageComponent,
+    HeaderComponent,
+    SidenavListComponent,
   ],
   imports: [
     AuthenticationModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     FlexLayoutModule,
     HttpClientModule,
     AppRoutingModule,

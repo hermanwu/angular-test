@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../authentication/services/auth.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -10,17 +10,52 @@ import { NgForm } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   maxDate;
+  registerForm: FormGroup;
 
-  registerUserData = {};
   constructor(private _auth: AuthService, private _router: Router) {}
 
   ngOnInit() {
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+
+    this.registerForm = new FormGroup({
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.email],
+      }),
+      password: new FormControl('', { validators: [Validators.required] }),
+      firstName: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      lastName: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      phoneCountryCode: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      phoneNumber: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      securityQuestionUuid: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      securityQuestionAnswer: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      AgeConfirmed: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      privacyPolicyAgreed: new FormControl('', {
+        validators: [Validators.required],
+      }),
+      userLicenseAgreed: new FormControl('', {
+        validators: [Validators.required],
+      }),
+    });
   }
 
   registerUser() {
-    this._auth.registerUser(this.registerUserData).subscribe(
+    console.log(this.registerForm);
+    this._auth.registerUser(this.registerForm.value).subscribe(
       res => {
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
@@ -30,7 +65,11 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
   }
 }
