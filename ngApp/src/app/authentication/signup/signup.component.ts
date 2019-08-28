@@ -23,32 +23,32 @@ export class SignupComponent implements OnInit {
         validators: [Validators.required, Validators.email],
       }),
       password: new FormControl('', { validators: [Validators.required] }),
-      firstName: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      lastName: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      phoneCountryCode: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      phoneNumber: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      securityQuestionUuid: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      securityQuestionAnswer: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      AgeConfirmed: new FormControl('', {
-        validators: [Validators.required],
-      }),
-      privacyPolicyAgreed: new FormControl('', {
-        validators: [Validators.required],
-      }),
+      // firstName: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // lastName: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // phoneCountryCode: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // phoneNumber: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // securityQuestionUuid: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // securityQuestionAnswer: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // AgeConfirmed: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
+      // privacyPolicyAgreed: new FormControl('', {
+      //   validators: [Validators.required],
+      // }),
       userLicenseAgreed: new FormControl('', {
-        validators: [Validators.required],
+        validators: [Validators.requiredTrue],
       }),
     });
   }
@@ -71,5 +71,9 @@ export class SignupComponent implements OnInit {
 
   get password() {
     return this.registerForm.get('password');
+  }
+
+  get userLicenseAgreed() {
+    return this.registerForm.get('userLicenseAgreed');
   }
 }

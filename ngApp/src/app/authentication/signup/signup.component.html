@@ -47,7 +47,9 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> -->
-      <mat-checkbox color="primary">Agree to Terms and Conditions</mat-checkbox>
+      <mat-checkbox formControlName="userLicenseAgreed" color="primary"
+        >Agree to Terms and Conditions</mat-checkbox
+      >
       <button
         type="submit"
         mat-raised-button
