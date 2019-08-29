@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <div fxFlex fxLayout fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li>
+        <a routerLink="/">DC</a>
+      </li>
+      <li>
+        <a routerLink="/applications" routerLinkActive="active">MarketPlace</a>
+      </li>
+      <li>
+        <a routerLink="/special-app" routerLinkActive="active">Downloaded</a>
+      </li>
+    </ul>
+  </div>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li>
+        <a
+          *ngIf="!_authService.loggedIn()"
+          routerLink="/login"
+          routerLinkActive="active"
+          >Login
+        </a>
+      </li>
+      <li>
+        <a
+          *ngIf="!_authService.loggedIn()"
+          routerLink="/register"
+          routerLinkActive="active"
+          >Register
+        </a>
+      </li>
+      <li>
+        <a
+          style="cursor:pointer"
+          *ngIf="_authService.loggedIn()"
+          (click)="_authService.logoutUser()"
+          >Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>
