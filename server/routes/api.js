@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/user');
+const TrackedStocks = require('../models/trackedStocks');
 const RefreshToken = require('../models/refreshToken');
 
 const mongoose = require('mongoose');
@@ -21,7 +22,7 @@ mongoose.connect(keys.mongoURI, err => {
 function saveRefreshToken(refreshToken) {
   let refreshTokenForDB = new RefreshToken({
     refreshToken: refreshToken,
-    isValid: true
+    isValid: true,
   });
   refreshTokenForDB.save();
 }
@@ -68,8 +69,18 @@ router.get('/isLoggedIn', (req, res) => {
   });
 });
 
-router.post('/register', (req, res) => {
+router.post('/tracked-stocks', (req, res) => {
   console.log(req.body);
+  let trackedStocks = new TrackedStocks(req.body);
+  trackedStocks.save((error, savedTrackedStocks) => {
+    console.log(savedTrackedStocks);
+
+    res.status(200).send(savedTrackedStocks);
+  });
+});
+
+router.post('/register', (req, res) => {
+  console.log(req);
   let userData = req.body;
   let user = new User(userData);
   user.save((error, registeredUser) => {
@@ -78,10 +89,10 @@ router.post('/register', (req, res) => {
     } else {
       let payload = { subject: registeredUser._id };
       let accessToken = jwt.sign(payload, 'secretKey', {
-        expiresIn: accessTokenLife
+        expiresIn: accessTokenLife,
       });
       let refreshToken = jwt.sign(payload, 'refreshTokenKey', {
-        expiresIn: refreshTokenLife
+        expiresIn: refreshTokenLife,
       });
 
       saveRefreshToken(refreshToken);
@@ -104,10 +115,10 @@ router.post('/login', (req, res) => {
       } else {
         let payload = { subject: user._id };
         let accessToken = jwt.sign(payload, 'secretKey', {
-          expiresIn: accessTokenLife
+          expiresIn: accessTokenLife,
         });
         let refreshToken = jwt.sign(payload, 'refreshTokenKey', {
-          expiresIn: '90s'
+          expiresIn: '90s',
         });
 
         saveRefreshToken(refreshToken);
@@ -139,7 +150,7 @@ router.post('/refreshToken', (req, res) => {
             { subject: decoded.subject },
             'secretKey',
             {
-              expiresIn: accessTokenLife
+              expiresIn: accessTokenLife,
             }
           );
           res.status(200).send({ accessToken });
@@ -152,7 +163,7 @@ router.post('/refreshToken', (req, res) => {
 router.get('/applications', (req, res) => {
   let applications = [
     { _id: '1', name: 'Linux App', description: 'des', date: '2019-7-24' },
-    { _id: '2', name: 'Centos App', description: 'des', date: '2019-7-24' }
+    { _id: '2', name: 'Centos App', description: 'des', date: '2019-7-24' },
   ];
   res.json(applications);
 });
@@ -163,14 +174,14 @@ router.get('/special-app', verifyToken, (req, res) => {
       _id: '1',
       name: 'Downloaded windows app',
       description: 'des',
-      date: '2019-7-24'
+      date: '2019-7-24',
     },
     {
       _id: '2',
       name: 'Downloaded linux app',
       description: 'des',
-      date: '2019-7-24'
-    }
+      date: '2019-7-24',
+    },
   ];
   res.json(events);
 });
@@ -195,7 +206,7 @@ router.get('/stock', (req, res) => {
     summary: 'test',
     bull: true,
     term: 1,
-    perspective: 1
+    perspective: 1,
   };
   res.json(stock);
 });
