@@ -15,8 +15,6 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { StockPropertiesComponent } from './stock-properties/stock-properties.component';
 import { StockPropertiesResolverService } from './stock-properties/stock-properties-resolver.service';
-import { ApplicationRoutingModule } from './application/application-routing.module';
-import { ApplicationsPageComponent } from './application/applications-page/applications-page.component';
 import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationModule } from './authentication/authentication.module';
@@ -24,6 +22,10 @@ import { SignupComponent } from './authentication/signup/signup.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
+import { ApplicationModule } from './application/application.module';
 
 @NgModule({
   declarations: [
@@ -33,20 +35,25 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     SignupComponent,
     SpecialEventsComponent,
     StockPropertiesComponent,
-    ApplicationsPageComponent,
     HeaderComponent,
     SidenavListComponent,
   ],
   imports: [
+    ApplicationModule,
     AuthenticationModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    AppRoutingModule,
-    ApplicationRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'APM Demo App Devtools',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    AppRoutingModule,
   ],
   providers: [
     AuthService,
