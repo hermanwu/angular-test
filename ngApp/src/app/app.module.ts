@@ -27,6 +27,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
 import { ApplicationModule } from './application/application.module';
 
+/* NgRx Router Store */
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  RouterState,
+} from '@ngrx/router-store';
+import { CustomSerializer } from './shared/custom-route-serializer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,13 +55,30 @@ import { ApplicationModule } from './application/application.module';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(
+      {
+        router: routerReducer,
+      },
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+          strictStateSerializability: true,
+          strictActionSerializability: true,
+        },
+      }
+    ),
     StoreDevtoolsModule.instrument({
       name: 'APM Demo App Devtools',
       maxAge: 25,
       logOnly: environment.production,
     }),
     AppRoutingModule,
+    StoreRouterConnectingModule.forRoot({
+      // these two settings make sure router state and actions are strictly serializable.
+      routerState: RouterState.Minimal,
+      serializer: CustomSerializer,
+    }),
   ],
   providers: [
     AuthService,

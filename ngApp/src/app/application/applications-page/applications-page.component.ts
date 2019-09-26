@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationInstance } from '../models/application-instance.model';
 import { ApplicationHttpService } from '../services/application-http.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import * as fromProduct from '../state/product.reducer';
 
 @Component({
   selector: 'app-applications-page',
@@ -21,13 +22,16 @@ export class ApplicationsPageComponent implements OnInit {
     //   this.applicationInstances = applications;
     // });
 
-    this.applicationInstances = [{ id: 1 }, { id: 2 }];
+    //this.applicationInstances = [{ id: 1 }, { id: 2 }];
     this.checkChanged(true);
+
+    // TODO: subscribe
+    this.store.pipe(select(fromProduct.getAppsList)).subscribe(apps => {
+      this.applicationInstances = apps;
+    });
   }
 
   checkChanged(value: boolean): void {
-    console.log('test');
-    console.log(this.store);
     this.store.dispatch({
       type: 'SHOW_APP',
       payload: [{ id: 1 }, { id: 2 }],
