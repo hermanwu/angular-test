@@ -5,7 +5,7 @@ import { ApplicationRoutingModule } from './application-routing.module';
 import { ApplicationsPageComponent } from './applications-page/applications-page.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/product.reducer';
-import { SharedModule } from '../shared/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [ApplicationsPageComponent],

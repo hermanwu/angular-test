@@ -1,4 +1,4 @@
-import * as fromRoot from '../../shared/app.state';
+import * as fromRoot from '../../shared/shared.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface State extends fromRoot.State {

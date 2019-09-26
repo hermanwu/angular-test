@@ -33,7 +33,7 @@ import {
   routerReducer,
   RouterState,
 } from '@ngrx/router-store';
-import { CustomSerializer } from './shared/custom-route-serializer';
+import { CustomSerializer } from './shared/router/custom-route-serializer';
 
 @NgModule({
   declarations: [

@@ -3,6 +3,7 @@ import { ApplicationInstance } from '../models/application-instance.model';
 import { ApplicationHttpService } from '../services/application-http.service';
 import { Store, select } from '@ngrx/store';
 import * as fromProduct from '../state/product.reducer';
+import * as fromRouter from '../../shared/router/router.store/router.selector';
 
 @Component({
   selector: 'app-applications-page',
@@ -28,6 +29,11 @@ export class ApplicationsPageComponent implements OnInit {
     // TODO: subscribe
     this.store.pipe(select(fromProduct.getAppsList)).subscribe(apps => {
       this.applicationInstances = apps;
+    });
+
+    this.store.pipe(select(fromRouter.selectUrl)).subscribe(router => {
+      console.log('test');
+      console.log(router);
     });
   }
 
